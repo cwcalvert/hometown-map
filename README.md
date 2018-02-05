@@ -1,2 +1,2 @@
 # hometown-map
-Seattle Map
+Colorado Map
