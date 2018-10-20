@@ -17,7 +17,7 @@
 			padding: 0;
 			background: #f5f5f5;
 			font-family: "Noto Sans", sans-serif;
-			color: #FF8C00;
+			color: ##03080c;
 		}
 
 		section {
@@ -41,13 +41,14 @@
 		}
 
 		a {
-			color: #228B22;
+			color: #46aa6e;
 			font-weight: bold;
 			text-decoration: none;
 		}
 
 		a:hover {
 			text-decoration: underline;
+			color: #e39e16;
 		}
 
 		ul {
@@ -76,31 +77,35 @@
 			<img src="graphics/co_waterways_1200px.png">
 		</div>
 
-		<h2>about this map</h2>
+		<h2>About This Map</h2>
 		<p>More information about <a href="https://en.wikipedia.org/wiki/Denver">Denver</a>. A map of Colorado's Capitol.</p> <!-- Good addition. -->
 
 		<ul>
 			<!-- Change the following contacts to your personal brand, whatever you want it to be! -->
 			<li>See my projects on GitHub: <a href="https://github.com/cwcalvert">Craig Calvert</a></li>
+			<li> Visit my <a href="http://www.craigcphotography.com">Website</a></li>
 		</ul>
 
 		<!-- let's do the exploration and of course replace the photo if you want -->
-		<img src="http://pixel.outragegis.com/d/28849-2/Christopher+Columbus.jpg" style="width:100%;">
+		<!-- <img src="http://pixel.outragegis.com/d/28849-2/Christopher+Columbus.jpg" style="width:100%;"-->
 		<!-- the style property is an inline CSS rule that we talk about (a little bit) this week -->
 
 	</section>
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet-src.js"></script>
+
 	<script>
 		// map options
 		var options = {
 			center: [39.743287,-104.989542], // lat/lon values
-			zoom: 11
+			zoom: 9.25
 		}
 
 		// create a Leaflet map in our division container with id of 'map'
 		var map = L.map('map', options);
+
+		//map.addLayer(tiles);
 
 		// request some basemap tiles and add to the map
 		var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
@@ -109,14 +114,41 @@
 			maxZoom: 19
 		}).addTo(map);
 
-		// write a custom message for the Leaflet tooltip
-		var message = 'Mountains are great!';
 
-		// add a marker to the center of the map and open the tooltip
-		L.marker(map.getCenter())
-			.bindTooltip(message)
-			.addTo(map)
-			.openTooltip();
+// Adding values for 2 cities
+	var coord1 = [40.0150,-105.2705],
+		location1Name = "Boulder",
+		loc1Details = "Home of the University of Colorado Buffaloes";
+		
+
+
+	var coord2 = [39.7392,-104.9903],
+		location2Name = "Denver",
+		loc2Details = "Capital of Colorado";
+
+//Defining Arrays
+	var coords = [coord1,coord2],
+			locations = [location1Name, location2Name],
+			locationDetails = [loc1Details,loc2Details];
+
+//Creating tooltips
+	var location1Tooltip = "<b>" + locations[0] + "</b><br>" +
+	    "<b>Details</b>: " + locationDetails[0]+ "<br>";
+
+			// var location1Tooltip = "<b>" + locations[0] + "</b><br>" +
+			// 		"<b>Details</b>: " + locationDetails[0]+ "<br>" + "<img src="https://www.colorado.com/sites/default/files/styles/1000x685/public/Flatirons_Emerson12flickr.jpg?itok=EZi9dbfi">";
+			// Attempted to add this code for an image in the tool tip but couldnt figure out how to get it to work.
+
+	var location2Tooltip = "<b>" + locations[1] + "</b><br>" +
+	    "<b>Details</b>: " + locationDetails[1] + "<br>";
+
+	L.marker(coords[0]).addTo(map)
+	  .bindTooltip(location1Tooltip);
+
+	L.marker(coords[1]).addTo(map)
+	  .bindTooltip(location2Tooltip);
+
+
 	</script>
 
 </body>
