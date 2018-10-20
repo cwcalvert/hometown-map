@@ -61,7 +61,7 @@
 
 		#map {
 			width: 100%;
-			margin: 10px auto; 
+			margin: 10px auto;
 			/*border: 2px solid #d3d3d3;!>*/
 		}
 /* add custom style class here */
@@ -83,13 +83,13 @@
 
 		<h1>Waterways of Colorado</h1>
 
-		<div id='map'>
+		<div id='map'> <!-- Notice that we are not using any Javascript on this page. So, this div element with a #map id shows your PNG files. -->er
 			<img src="Graphics/co_waterways_1200px.png" alt="Map of Colorado's Major Waterways"
-			class="max-image-width">
+			class="max-image-width"> <!-- consider removing border from QGIS print composer -->
 			<br>
 			<a href="Graphics/co_waterways_8000px.png" target="blank" class="image-link">Higher resolution version</a>
+			<!-- Nice line work on the streams. One suggestion. Consider making the outline of your waterbodies the same blue as your stream lines. The fill could be the same hue as the outline, but make it a little lighter -->
 		</div>
-
 		<!-- Add you information below -->
 		<h2>Authored by: Craig Calvert</h2>
 		<p>This map was made using QGIS 2.15.18 on macOS High Sierra utilizing data from the National Atlas of the US. 1:1,000,000 scale represented. February 4, 2018. </p>
@@ -98,7 +98,7 @@
 			<!-- Change the following contacts to your personal brand, whatever you want it to be! -->
 			<li>See my projects on GitHub: <a href="https://github.com/cwcalvert">cwcalvert</a></li>
 			<li>Follow me on twitter: <a href="https://twitter.com/NewMapsPlus">@NewMapsPlus</a></li>
-			<li>Visit my website: <a href='http://www.craigcphotography.com'>Craig C Photography</a>.</li>
+			<li>Visit my website: <a href='http://www.craigcphotography.com'>Craig C Photography</a>.</li> <!-- awesome website! I hope you plan on mapping your photos! -->
 		</ul>
 	</section>
 
