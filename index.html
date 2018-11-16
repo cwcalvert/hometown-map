@@ -167,7 +167,7 @@ for (var i = 0; i < myLocations.length; i++) {
 		"<p><b>Type</b>: " +
 		loc.type +
 		"</p>";
-};
+
 
 
 var icon = L.icon({
@@ -184,21 +184,7 @@ if (loc.coordinates) {
 })
   .addTo(map)
   .bindPopup(popup);
-
 }
-
-// var marker = L.marker(loc.coordinates, {
-// 				icon: icon
-// 			})
-// 			.addTo(map)
-// 			.bindPopup(popup);
-
-	// var marker = L.marker(loc.coordinates, {
-	// 			icon: icon
-	// 		})
-	// 		.addTo(map)
-	// 		.bindPopup(popup)
-
 
 			marker.on("mouseover", function() {
 				this.openPopup();
@@ -206,6 +192,7 @@ if (loc.coordinates) {
 		marker.on("mouseout", function() {
 			this.closePopup();
 		});
+	};
 
 		// var popup = "<h3>" + myLocations[i].name + "</h3>" +
 		// 					"<p>" + props.description + "</p>";
