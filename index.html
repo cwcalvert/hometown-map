@@ -60,8 +60,8 @@
 		}
 
 		.icon:hover {
-	    /*opacity: .8;*/
-	  }
+			/*opacity: .8;*/
+		}
 
 		#map {
 			width: 100%;
@@ -84,7 +84,8 @@
 		</div>
 
 		<h2>Central Colorado Points of Interest</h2>
-		<p>More information about <a href="https://en.wikipedia.org/wiki/Denver">Denver</a>. A map of Colorado's Capitol.</p> <!-- Good addition. -->
+		<p>More information about <a href="https://en.wikipedia.org/wiki/Denver">Denver</a>. A map of Colorado's Capitol.</p>
+		<!-- Good addition. -->
 
 		<ul>
 			<!-- Change the following contacts to your personal brand, whatever you want it to be! -->
@@ -98,13 +99,14 @@
 
 	</section>
 
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	 crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet-src.js"></script>
 
 	<script>
 		// map options
 		var options = {
-			center: [39.743287,-104.989542], // lat/lon values
+			center: [39.743287, -104.989542], // lat/lon values
 			zoom: 8
 		}
 
@@ -114,138 +116,123 @@
 		//map.addLayer(tiles);
 
 		// request some basemap tiles and add to the map
-		var tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}', {
-			attribution: 'Tiles &copy; Esri &mdash; Copyright: &copy;2012 DeLorme',
-			subdomains: 'abcd',
-			maxZoom: 19
-		}).addTo(map);
+		var tiles = L.tileLayer(
+			'https://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}', {
+				attribution: 'Tiles &copy; Esri &mdash; Copyright: &copy;2012 DeLorme',
+				subdomains: 'abcd',
+				maxZoom: 19
+			}).addTo(map);
 
 
-		var myLocations = [
-  {
-    name: "Longs Peak",
-    properties: {
-      coordinates: [40.2548744,-105.6247843],
-      type: "Peak",
-			url: "",
-      details: "Popular 14er in Rocky Mountain National Park",
-			icon:'svgs/mountain-11.svg'
-    }
-  },
-  {
-    name: "Ozo Coffee Co",
-    properties: {
-      coordinates: [40.0145557,-105.2762282],
-      type: "Cafe",
-			url: "",
-      details: "Comfy outpost of local chain brewing gourmet coffee & espresso drinks with light daytime bites",
-			icon:'svgs/cafe-11.svg'
-    }
-  },
-	{
-		name: "Elevation Cycles",
-		properties: {
-			coordinates: [39.7311317,-105.1134824],
-			type: "Bike Shop",
-			url: "",
-			details: "Showroom for mostly Trek Brand mountain and road bikes",
-			icon: 'svgs/bicycle-11.svg'
-		}
-	}
-];
+		var myLocations = [{
+				name: "Longs Peak",
+				properties: {
+					coordinates: [40.2548744, -105.6247843],
+					type: "Peak",
+					url: "",
+					details: "Popular 14er in Rocky Mountain National Park",
+					icon: 'svgs/mountain-11.svg'
+				}
+			},
+			{
+				name: "Ozo Coffee Co",
+				properties: {
+					coordinates: [40.0145557, -105.2762282],
+					type: "Cafe",
+					url: "",
+					details: "Comfy outpost of local chain brewing gourmet coffee & espresso drinks with light daytime bites",
+					icon: 'svgs/cafe-11.svg'
+				}
+			},
+			{
+				name: "Elevation Cycles",
+				properties: {
+					coordinates: [39.7311317, -105.1134824],
+					type: "Bike Shop",
+					url: "",
+					details: "Showroom for mostly Trek Brand mountain and road bikes",
+					icon: 'svgs/bicycle-11.svg'
+				}
+			}
+		];
 
-for (var i = 0; i < myLocations.length; i++) {
-	var loc = myLocations[i].properties;
-	console.log(loc);
-	var popup = "<h3>" + myLocations[i].name + "</h3>" +
-		"<p>" + loc.details + "</p>" +
-		"<p><b>website</b>: <a href='" +
-		loc.url +
-		"'>" +
-		loc.url +
-		"</a></p>" +
-		"<p><b>Type</b>: " +
-		loc.type +
-		"</p>";
-};
+		for (var i = 0; i < myLocations.length; i++) {
+			var loc = myLocations[i].properties;
+			console.log(loc);
+			var popup = "<h3>" + myLocations[i].name + "</h3>" +
+				"<p>" + loc.details + "</p>" +
+				"<p><b>website</b>: <a href='" +
+				loc.url +
+				"'>" +
+				loc.url +
+				"</a></p>" +
+				"<p><b>Type</b>: " +
+				loc.type +
+				"</p>";
 
 
-var icon = L.icon({
-	iconUrl: loc.icon,
-	iconSize: [40, 40],
-	popupAnchor: [0, -22],
-	className: "icon"
-});
 
-if (loc.coordinates) {
-  console.log("I have coordinates in this object, so place me!")
-  var marker = L.marker(loc.coordinates, {
-  icon: icon
-})
-  .addTo(map)
-  .bindPopup(popup);
+			var icon = L.icon({
+				iconUrl: loc.icon,
+				iconSize: [40, 40],
+				popupAnchor: [0, -22],
+				className: "icon"
+			});
 
-}
+			if (loc.coordinates) {
+				console.log("I have coordinates in this object, so place me!")
+				var marker = L.marker(loc.coordinates, {
+						icon: icon
+					})
+					.addTo(map)
+					.bindPopup(popup);
+			}
 
-// var marker = L.marker(loc.coordinates, {
-// 				icon: icon
-// 			})
-// 			.addTo(map)
-// 			.bindPopup(popup);
-
-	// var marker = L.marker(loc.coordinates, {
-	// 			icon: icon
-	// 		})
-	// 		.addTo(map)
-	// 		.bindPopup(popup)
-
-
-			marker.on("mouseover", function() {
+			marker.on("mouseover", function () {
 				this.openPopup();
-	});
-		marker.on("mouseout", function() {
-			this.closePopup();
-		});
+			});
+			marker.on("mouseout", function () {
+				this.closePopup();
+			});
+		};
 
 		// var popup = "<h3>" + myLocations[i].name + "</h3>" +
 		// 					"<p>" + props.description + "</p>";
-// Adding values for 2 cities
-// Attempts at adding an image in the tooltip in two different ways commented out
-// 	var coord1 = [40.0150,-105.2705],
-// 		location1Name = "Boulder",
-// 		loc1Details = "Home of the University of Colorado Buffaloes";
-// 		// pic1 = "<img src="https://www.colorado.com/sites/default/files/styles/1000x685/public/Flatirons_Emerson12flickr.jpg?itok=EZi9dbfi">";
-//
-//
-// 	var coord2 = [39.7392,-104.9903],
-// 		location2Name = "Denver",
-// 		loc2Details = "Capital of Colorado";
-// 		// pic2 = "<img src="https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2017/05/17/104475878-DENVER_1.1910x1000.jpg">";
-//
-// //Defining Arrays
-// 	var coords = [coord1,coord2],
-// 			locations = [location1Name, location2Name],
-// 			locationDetails = [loc1Details,loc2Details];
-			// pics = [pic1,pic2];
+		// Adding values for 2 cities
+		// Attempts at adding an image in the tooltip in two different ways commented out
+		// 	var coord1 = [40.0150,-105.2705],
+		// 		location1Name = "Boulder",
+		// 		loc1Details = "Home of the University of Colorado Buffaloes";
+		// 		// pic1 = "<img src="https://www.colorado.com/sites/default/files/styles/1000x685/public/Flatirons_Emerson12flickr.jpg?itok=EZi9dbfi">";
+		//
+		//
+		// 	var coord2 = [39.7392,-104.9903],
+		// 		location2Name = "Denver",
+		// 		loc2Details = "Capital of Colorado";
+		// 		// pic2 = "<img src="https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2017/05/17/104475878-DENVER_1.1910x1000.jpg">";
+		//
+		// //Defining Arrays
+		// 	var coords = [coord1,coord2],
+		// 			locations = [location1Name, location2Name],
+		// 			locationDetails = [loc1Details,loc2Details];
+		// pics = [pic1,pic2];
 
-//Creating tooltips
-	// var location1Tooltip = "<b>" + locations[0] + "</b><br>" +
-	//     "<b>Details</b>: " + locationDetails[0]+ "<br>";
-  //
-	// 		// var location1Tooltip = "<b>" + locations[0] + "</b><br>" +
-	// 		// 		"<b>Details</b>: " + locationDetails[0]+ "<br>" + "<img src="https://www.colorado.com/sites/default/files/styles/1000x685/public/Flatirons_Emerson12flickr.jpg?itok=EZi9dbfi">";
-	// 		// Attempted to add this code for an image in the tool tip but couldnt figure out how to get it to work.
-  //
-	// var location2Tooltip = "<b>" + locations[1] + "</b><br>" +
-	//     "<b>Details</b>: " + locationDetails[1] + "<br>";
-  //
-	// L.marker(coords[0]).addTo(map)
-	//   .bindTooltip(location1Tooltip);
-  //
-	// L.marker(coords[1]).addTo(map)
-	//   .bindTooltip(location2Tooltip);
-
-
+		//Creating tooltips
+		// var location1Tooltip = "<b>" + locations[0] + "</b><br>" +
+		//     "<b>Details</b>: " + locationDetails[0]+ "<br>";
+		//
+		// 		// var location1Tooltip = "<b>" + locations[0] + "</b><br>" +
+		// 		// 		"<b>Details</b>: " + locationDetails[0]+ "<br>" + "<img src="https://www.colorado.com/sites/default/files/styles/1000x685/public/Flatirons_Emerson12flickr.jpg?itok=EZi9dbfi">";
+		// 		// Attempted to add this code for an image in the tool tip but couldnt figure out how to get it to work.
+		//
+		// var location2Tooltip = "<b>" + locations[1] + "</b><br>" +
+		//     "<b>Details</b>: " + locationDetails[1] + "<br>";
+		//
+		// L.marker(coords[0]).addTo(map)
+		//   .bindTooltip(location1Tooltip);
+		//
+		// L.marker(coords[1]).addTo(map)
+		//   .bindTooltip(location2Tooltip);
 	</script>
 
 </body>
