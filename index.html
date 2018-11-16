@@ -60,7 +60,7 @@
 		}
 
 		.icon:hover {
-	    /*opacity: .8;*/
+	    opacity: .8;
 	  }
 
 		#map {
@@ -137,7 +137,7 @@
     properties: {
       coordinates: [40.0145557,-105.2762282],
       type: "Cafe",
-			url: "",
+			url: "ozocoffee.com",
       details: "Comfy outpost of local chain brewing gourmet coffee & espresso drinks with light daytime bites",
 			icon:'svgs/cafe-11.svg'
     }
@@ -155,8 +155,10 @@
 ];
 
 for (var i = 0; i < myLocations.length; i++) {
+
 	var loc = myLocations[i].properties;
 	console.log(loc);
+
 	var popup = "<h3>" + myLocations[i].name + "</h3>" +
 		"<p>" + loc.details + "</p>" +
 		"<p><b>website</b>: <a href='" +
@@ -167,25 +169,37 @@ for (var i = 0; i < myLocations.length; i++) {
 		"<p><b>Type</b>: " +
 		loc.type +
 		"</p>";
+
+		var icon = L.icon({
+			iconUrl: loc.icon,
+			iconSize: [40, 40],
+			popupAnchor: [0, -22],
+			className: "icon"
+		});
+
+		var marker = L.marker(loc.coordinates, {
+		icon: icon
+		})
+		.addTo(map)
+		.bindPopup(popup);
+
+		marker.on("mouseover", function() {
+			this.openPopup();
+});
+	// marker.on("mouseout", function() {
+	// 	this.closePopup();
+	// });
+
 };
 
 
-var icon = L.icon({
-	iconUrl: loc.icon,
-	iconSize: [40, 40],
-	popupAnchor: [0, -22],
-	className: "icon"
-});
 
-if (loc.coordinates) {
-  console.log("I have coordinates in this object, so place me!")
-  var marker = L.marker(loc.coordinates, {
-  icon: icon
-})
-  .addTo(map)
-  .bindPopup(popup);
 
-}
+// if (loc.coordinates) {
+//   console.log("I have coordinates in this object, so place me!")
+
+
+// }
 
 // var marker = L.marker(loc.coordinates, {
 // 				icon: icon
@@ -200,12 +214,7 @@ if (loc.coordinates) {
 	// 		.bindPopup(popup)
 
 
-			marker.on("mouseover", function() {
-				this.openPopup();
-	});
-		marker.on("mouseout", function() {
-			this.closePopup();
-		});
+
 
 		// var popup = "<h3>" + myLocations[i].name + "</h3>" +
 		// 					"<p>" + props.description + "</p>";
