@@ -100,6 +100,7 @@
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet-src.js"></script>
+	<script src="data/route.js"></script>
 
 	<script>
 		// map options
@@ -192,6 +193,41 @@ for (var i = 0; i < myLocations.length; i++) {
 
 };
 
+var myRoute = L.geoJson(routeDataTwo, {
+
+filter : function(feature) {
+		if(feature.geometry.type == "LineString") {
+				return feature;
+		}
+},
+style : function(feature) {
+
+		return {
+				color: "#005DAA",
+				weight: 4,
+				opacity: .6,
+				dashArray: "5, 5"
+		}
+}
+
+}).addTo(map);
+
+var myStops = L.geoJson(routeDataTwo, {
+
+filter : function(feature) {
+		if(feature.geometry.type == "Point") {
+				return feature;
+		}
+},
+onEachFeature : function(feature, layer) {
+
+	layer.bindPopup(feature.properties.name);
+
+}
+
+}).addTo(map);
+
+map.fitBounds(myRoute.getBounds());
 
 
 
